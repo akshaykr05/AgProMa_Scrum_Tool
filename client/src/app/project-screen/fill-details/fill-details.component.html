@@ -1,0 +1,35 @@
+<div class="container">
+  <button class="btn back" (click)="backOnPrevious()"><i class="ion-android-arrow-back"></i><span>Back</span></button>
+  <br>
+  <br>
+    <div class="row heading">
+      <h4 class="col-12 text-center">Add Details Of Project</h4>
+    </div>
+    <br>
+    <div class="jumbotron">
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="text-input">Project title</label>
+      <div class="col-md-9">
+        <input type="text" id="text-input"  [(ngModel)]="projectname" [ngModelOptions]="{standalone: true}" name="text-input" class="form-control form-control-primary" placeholder="Text">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="textarea-input">Project discription</label>
+      <div class="col-md-9">
+        <textarea id="textarea-input"  [(ngModel)]="projectdescription" [ngModelOptions]="{standalone: true}" name="textarea-input" rows="9" class="form-control form-control-primary" placeholder="Content.."></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="textarea-input">Technologies Used</label>
+      <div class="col-md-9">
+        <textarea id="textarea-input" [(ngModel)]="technologies" [ngModelOptions]="{standalone: true}" name="textarea-input" rows="9" class="form-control form-control-primary" placeholder="Content.."></textarea>
+      </div>
+      <span *ngIf="condition == 'id'">
+        <button class="btn update" (click)="AddProject()"><i class="ion-android-arrow-forward"></i><span> Add Project</span></button>
+      </span>
+      <span *ngIf="updateId">
+        <button class="btn update" (click)="updateProject()"><i class="ion-android-arrow-forward"></i><span> Update Project</span></button>
+      </span>
+    </div>
+</div>
+</div>

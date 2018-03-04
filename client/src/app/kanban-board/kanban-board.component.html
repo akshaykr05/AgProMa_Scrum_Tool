@@ -1,0 +1,75 @@
+<div class="container-fluid containerBlock" *ngIf="isDataAvailable">
+
+  <div class="KanbanLogo">
+    <h1>Kanban</h1>
+    <h6>AGPROMA </h6><br/>
+    <h5>Agile Project Management</h5><br/><i class="ion-star"></i>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-4">
+        <div><b>View All Release Plans</b></div>
+      <div>
+          <u (click)="fulldetail()">Click Here to View Project Detail!!</u>
+      </div>
+    </div>
+    <div class="col-lg-4">
+        <span><b>Select To View All Sprints</b></span>
+        <span><select class="custom-select form-control select" [(ngModel)]="releaseItem" (ngModelChange) ="releaseDetail()" name="rchoice" id="rchoice" aria-placeholder="choose release plan">
+             <option class="option" *ngFor="let releaseItem of releaseData" [ngValue]="releaseItem">{{releaseItem}}</option><!--to view no. of item in the table-->
+          </select></span>
+      </div>
+    <div class="col-lg-4">
+      <span><b>Select To View All Tasks</b></span>
+      <span><select class="custom-select form-control select" [(ngModel)]="sprintItem" (ngModelChange) = "sprintDetail()" name="schoice" id="schoice" aria-placeholder="choose sprint">
+          <option class="option" *ngFor="let sprintItem of sprintData" [ngValue]="sprintItem">{{sprintItem}}</option><!--to view no. of item in the table-->
+        </select></span>
+    </div>  
+  </div>
+  <table class="table">
+    <thead class="heading">
+      <tr>
+        <th class="tableHead text-center col-lg-3">Unplanned</th>
+        <th class="tableHead text-center col-lg-3">In Progress</th>
+        <th class="tableHead text-center col-lg-3">Release</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="tableContent" *ngFor="let item of showList">
+            <ul *ngIf="item.status == 'Unplanned'">
+              <li id="todo" data-toggle="popover" data-placement="top" title="">
+                <p class="h6 text-responsive">
+                  <font size="4">{{item.releaseName}}{{item.sprintName}}{{item.taskName}}</font>
+                  </p>
+              </li>
+            </ul>
+          </div>
+        </td>
+        <td>
+          <div *ngFor="let item of showList">
+            <ul *ngIf="item.status == 'Inprogress'">
+              <li id="doing" data-toggle="tooltip" data-placement="top" title="">
+                <p class="h6">
+                  <font size="4">{{item.releaseName}}{{item.sprintName}}{{item.taskName}}</font>
+                </p>
+              </li>
+            </ul>
+          </div>
+        </td>
+        <td>
+          <div *ngFor="let item of showList">
+            <ul *ngIf="item.status == 'Release' || item.status == 'Completed'">
+              <li id="done" data-toggle="tooltip" data-placement="top" title="">
+                <p class="h6">
+                  <font size="4">{{item.releaseName}}{{item.sprintName}}{{item.taskName}}</font>
+                </p>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
